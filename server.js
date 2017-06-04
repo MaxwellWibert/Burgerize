@@ -9,6 +9,8 @@ var app = express();
 // Requiring our models for syncing
 var db = require("./models");
 
+var PORT = process.env.PORT || 8080;
+
 // Sets up the Express app to handle data parsing
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -26,11 +28,11 @@ app.set("view engine", "handlebars");
 var routes = require("./controllers/burgers_controller.js");
 
 app.use("/", routes);
-
+console.log("routes used");
 // Syncing our sequelize models and then starting our express app
 db.sequelize.sync().then(function() {
-  app.listen(process.env.PORT || 8080, function() {
-    console.log("App listening on PORT " + process.env.PORT);
+  app.listen(PORT, function() {
+    console.log("App listening on PORT " + PORT);
   });
 });
 
