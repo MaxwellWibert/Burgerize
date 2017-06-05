@@ -29,7 +29,7 @@ var router = function(app){
 	});
 
 	app.get("/", (req, res)=>{
-		db.Burger.findAll({}).then(dbBurger=>{
+		db.Burger.findAll().then(dbBurger=>{
 			var hbsObject = {
 				burgers: dbBurger
 			};
